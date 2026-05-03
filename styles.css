@@ -1,0 +1,671 @@
+:root {
+  --bg: #101510;
+  --panel: #182119;
+  --panel-strong: #212d22;
+  --text: #f6f3e8;
+  --muted: #aeb8ab;
+  --line: #344033;
+  --gold: #f2b93b;
+  --green: #41b86a;
+  --red: #ef725c;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(242, 185, 59, 0.18), transparent 28%),
+    linear-gradient(135deg, #101510, #172516 52%, #101510);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.auth-screen {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: 28px;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(22px, 4vw, 42px);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.16) 46%, rgba(0, 0, 0, 0.72) 100%),
+    #101510;
+}
+
+.auth-brand {
+  display: grid;
+  align-items: start;
+  gap: 20px;
+  max-width: 620px;
+  text-shadow: 0 5px 30px rgba(0, 0, 0, 0.7);
+}
+
+.coin-button {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #fff2a8, var(--gold) 46%, #a86d10);
+  color: #2b1d05;
+  box-shadow: inset 0 -14px 28px rgba(88, 49, 0, 0.3), 0 18px 50px rgba(242, 185, 59, 0.28);
+  font-weight: 1000;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  max-width: 680px;
+  font-size: clamp(3rem, 8vw, 6.6rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+}
+
+h3 {
+  font-size: 1.35rem;
+}
+
+.auth-brand p,
+.claim-status,
+.coin-zone p,
+.form-message,
+.wallet-field,
+.stats-grid span,
+.milestone-list span,
+.manager-list span {
+  color: var(--muted);
+}
+
+.auth-brand p {
+  max-width: 520px;
+  color: #ffffff;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  line-height: 1.45;
+}
+
+.auth-card,
+.panel,
+.stats-grid article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel), transparent 4%);
+  box-shadow: var(--shadow);
+}
+
+.auth-card,
+.panel {
+  padding: 20px;
+}
+
+.auth-card {
+  align-self: center;
+  border-color: rgba(242, 185, 59, 0.34);
+  background: rgba(8, 10, 8, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.tab,
+.ghost-button {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-strong);
+  color: var(--text);
+}
+
+.tab.active {
+  background: linear-gradient(180deg, #ffe08a, var(--gold));
+  color: #211703;
+  font-weight: 900;
+}
+
+.auth-form {
+  display: none;
+  gap: 14px;
+}
+
+.auth-form.active,
+.wallet-field {
+  display: grid;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  font-weight: 800;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0f150f;
+  color: var(--text);
+  padding: 11px 12px;
+}
+
+.primary-button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffe08a, var(--gold));
+  color: #171005;
+  font-weight: 1000;
+}
+
+.form-message {
+  min-height: 24px;
+  margin-top: 14px;
+}
+
+.form-message.error,
+.claim-status.error {
+  color: var(--red);
+}
+
+.form-message.success,
+.claim-status.success {
+  color: var(--green);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.manager-badge {
+  display: inline-block;
+  margin-top: 8px;
+  border: 1px solid color-mix(in srgb, var(--gold), transparent 35%);
+  border-radius: 8px;
+  color: var(--gold);
+  padding: 6px 8px;
+  font-weight: 900;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stats-grid article {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+}
+
+.stats-grid strong {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+
+.coin-zone {
+  display: grid;
+  place-items: center;
+  gap: 18px;
+  min-height: 360px;
+  text-align: center;
+}
+
+.coin-button {
+  width: min(270px, 74vw);
+  height: min(270px, 74vw);
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: transform 80ms ease, filter 120ms ease;
+}
+
+.coin-symbol {
+  font-size: clamp(4rem, 15vw, 8rem);
+  font-weight: 900;
+  color: #2b1d05;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1;
+}
+
+.coin-button:active {
+  transform: scale(0.95);
+  filter: brightness(1.08);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.75fr);
+  gap: 16px;
+}
+
+.manager-panel {
+  grid-column: 1 / -1;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.wallet-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.wallet-options label {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-strong);
+  padding: 10px;
+}
+
+.wallet-field {
+  margin-bottom: 16px;
+}
+
+.claim-status {
+  min-height: 44px;
+  margin-top: 12px;
+  line-height: 1.45;
+}
+
+.milestone-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.milestone-list li,
+.manager-list div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 13px 0;
+}
+
+.milestone-list li.reached strong {
+  color: var(--green);
+}
+
+.manager-list {
+  display: grid;
+  gap: 4px;
+}
+
+.manager-claim small {
+  display: block;
+  margin-top: 4px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.manager-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.manager-actions button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--green);
+  color: var(--bg);
+  font-weight: 800;
+  padding: 6px 12px;
+}
+
+.manager-actions button.danger {
+  background: #ff7a7a;
+}
+
+.upgrades-list {
+  display: grid;
+  gap: 12px;
+}
+
+.upgrade-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel-strong), transparent 20%);
+  padding: 14px;
+  transition: all 200ms ease;
+}
+
+.upgrade-item.available {
+  border-color: var(--green);
+  background: color-mix(in srgb, var(--green), transparent 90%);
+}
+
+.upgrade-item.owned {
+  opacity: 0.6;
+  border-color: var(--green);
+}
+
+.upgrade-info {
+  display: grid;
+  gap: 6px;
+}
+
+.upgrade-info strong {
+  font-size: 1rem;
+}
+
+.upgrade-info p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.upgrade-cost {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.upgrade-button {
+  min-width: 100px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--green);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+
+.upgrade-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--green), white 15%);
+  transform: translateY(-2px);
+}
+
+.upgrade-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.upgrade-button:disabled {
+  background: var(--muted);
+  color: var(--bg);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.upgrade-button.owned-btn {
+  background: var(--gold);
+  color: var(--bg);
+  cursor: default;
+}
+
+.admin-panel {
+  grid-column: 1 / -1;
+}
+
+.admin-shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.shop-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--gold), transparent 95%);
+  padding: 14px;
+  transition: all 200ms ease;
+}
+
+.shop-item:hover {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold), transparent 90%);
+  transform: translateY(-2px);
+}
+
+.shop-info {
+  display: grid;
+  gap: 6px;
+}
+
+.shop-info strong {
+  font-size: 1rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.shop-info p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.shop-cost {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--red);
+}
+
+.shop-item button {
+  min-width: 80px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  background: var(--gold);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+
+.shop-item button:hover {
+  background: color-mix(in srgb, var(--gold), white 15%);
+  transform: translateY(-2px);
+}
+
+.shop-item button:active {
+  transform: translateY(0);
+}
+
+.admin-message {
+  min-height: 24px;
+  margin: 0;
+}
+
+.admin-message.success {
+  color: var(--green);
+}
+
+.admin-message.error {
+  color: var(--red);
+}
+
+.withdrawal-form {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel-strong), transparent 50%);
+  padding: 18px;
+}
+
+.withdrawal-form .wallet-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.withdrawal-form .wallet-options label {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-strong);
+  padding: 10px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.withdrawal-form .wallet-options label:hover {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--panel-strong), var(--gold) 5%);
+}
+
+.withdrawal-form .wallet-options input[type="radio"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.withdrawal-form .wallet-field {
+  display: grid;
+  gap: 8px;
+}
+
+.withdrawal-form input[type="text"],
+.withdrawal-form input[type="number"] {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0f150f;
+  color: var(--text);
+  padding: 10px 12px;
+  font-size: 1rem;
+}
+
+.withdrawal-form input[type="text"]:focus,
+.withdrawal-form input[type="number"]:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold), transparent 85%);
+}
+
+.withdrawal-form button {
+  min-height: 48px;
+  margin-top: 8px;
+}
+
+.withdrawal-message {
+  min-height: 24px;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.withdrawal-message.success {
+  color: var(--green);
+}
+
+.withdrawal-message.error {
+  color: var(--red);
+}
+
+@media (max-width: 780px) {
+  .app {
+    padding: 0;
+  }
+
+  .auth-screen,
+  .stats-grid,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-screen {
+    padding: 18px;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.72) 48%, rgba(0, 0, 0, 0.94) 100%),
+      #101510;
+  }
+
+  .auth-brand {
+    align-items: flex-start;
+  }
+
+  .auth-brand h1 {
+    font-size: clamp(2.6rem, 13vw, 4.4rem);
+  }
+
+  .wallet-options {
+    grid-template-columns: 1fr !important;
+  }
+
+  .withdrawal-form .wallet-options {
+    grid-template-columns: 1fr !important;
+  }
+}

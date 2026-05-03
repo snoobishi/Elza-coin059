@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: elza-coin039
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MANAGER_USERNAME
+        value: Elzakaryg
+      - key: MANAGER_EMAIL
+        value: elzakaryg@gmail.com

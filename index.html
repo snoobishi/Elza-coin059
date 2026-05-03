@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elza-coin059</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="auth-screen" id="authScreen">
+      <div class="auth-brand">
+        <div>
+          <h1>Elza-coin059</h1>
+          <p>Click coins, reach rewards, request your transfer.</p>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <div class="tabs" role="tablist" aria-label="Account forms">
+          <button class="tab active" id="showLogin" type="button">Login</button>
+          <button class="tab" id="showRegister" type="button">Register</button>
+        </div>
+
+        <form class="auth-form active" id="loginForm">
+          <label>
+            Username
+            <input id="loginUsername" type="text" autocomplete="username" required>
+          </label>
+          <label>
+            Password
+            <input id="loginPassword" type="password" autocomplete="current-password" required>
+          </label>
+          <button class="primary-button" type="submit">Login</button>
+        </form>
+
+        <form class="auth-form" id="registerForm">
+          <label>
+            Username
+            <input id="registerUsername" type="text" autocomplete="username" required>
+          </label>
+          <label>
+            Gmail
+            <input id="registerEmail" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Password
+            <input id="registerPassword" type="password" autocomplete="new-password" minlength="6" required>
+          </label>
+          <button class="primary-button" type="submit">Create account</button>
+        </form>
+
+        <p class="form-message" id="authMessage" role="status"></p>
+      </div>
+
+    </section>
+
+    <section class="game-screen hidden" id="gameScreen">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Logged in as</span>
+          <h2 id="playerName">Player</h2>
+          <p id="managerBadge" class="manager-badge hidden">Manager account</p>
+        </div>
+        <button class="ghost-button" id="logoutButton" type="button">Logout</button>
+      </header>
+
+      <section class="stats-grid" aria-label="Player progress">
+        <article>
+          <span>Total Clicks</span>
+          <strong id="clickCount">0</strong>
+        </article>
+        <article>
+          <span>Current Reward</span>
+          <strong id="rewardAmount">$0</strong>
+        </article>
+        <article>
+          <span>Next Goal</span>
+          <strong id="nextGoal">150,000</strong>
+        </article>
+      </section>
+
+      <section class="coin-zone">
+        <button class="coin-button" id="coinButton" type="button" aria-label="Click coin">
+          <span class="coin-symbol">$</span>
+        </button>
+        <p id="coinMessage">Click the coin to build your reward.</p>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Withdraw</span>
+              <h3>Withdraw your earnings</h3>
+            </div>
+          </div>
+
+          <div class="wallet-options">
+            <label>
+              <input type="radio" name="withdrawUserType" value="Binance" checked>
+              <span>Binance</span>
+            </label>
+            <label>
+              <input type="radio" name="withdrawUserType" value="Gift Card">
+              <span>Gift Card</span>
+            </label>
+          </div>
+
+          <label class="wallet-field">
+            <span id="userWithdrawLabel">Wallet address</span>
+            <input id="userWithdrawAddress" type="text" placeholder="Paste wallet address">
+          </label>
+
+          <label class="wallet-field">
+            Amount to Withdraw
+            <div style="display: flex; gap: 8px;">
+              <input id="userWithdrawAmount" type="number" placeholder="Enter amount" min="1" max="99" style="flex: 1;">
+              <span style="display: flex; align-items: center; padding: 0 12px; background: var(--panel-strong); border: 1px solid var(--line); border-radius: 8px; min-height: 44px; font-weight: 600; color: var(--gold);">$</span>
+            </div>
+          </label>
+
+          <button class="primary-button" id="userWithdrawButton" type="button">Withdraw Funds</button>
+          <p class="claim-status" id="userWithdrawStatus" role="status">Reach 150,000 clicks to unlock withdrawals.</p>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Redeem Code</span>
+              <h3>Enter promo code</h3>
+            </div>
+          </div>
+
+          <label class="wallet-field">
+            Redeem Code
+            <input id="redeemCodeInput" type="text" placeholder="Enter your redeem code">
+          </label>
+
+          <button class="primary-button" id="redeemCodeButton" type="button">Redeem</button>
+          <p class="claim-status" id="redeemCodeStatus" role="status">Enter a valid redeem code to get bonus points.</p>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Upgrades</span>
+              <h3>Power-ups</h3>
+            </div>
+          </div>
+          <div class="upgrades-list" id="upgradesList"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Rewards</span>
+              <h3>Milestones</h3>
+            </div>
+          </div>
+          <ul class="milestone-list" id="milestoneList">
+            <li data-goal="150000"><span>150,000 clicks</span><strong>$15</strong></li>
+            <li data-goal="200000"><span>200,000 clicks</span><strong>$20</strong></li>
+            <li data-goal="1000000"><span>1,000,000 clicks</span><strong>$100</strong></li>
+          </ul>
+        </article>
+
+        <article class="panel manager-panel hidden" id="managerPanel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Manager</span>
+              <h3>Players</h3>
+            </div>
+          </div>
+          <div class="manager-list" id="managerList"></div>
+        </article>
+
+        <article class="panel admin-panel hidden" id="adminPanel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Admin Shop</span>
+              <h3>Purchase X & Points</h3>
+            </div>
+          </div>
+          <div class="admin-shop">
+            <div class="shop-item">
+              <div class="shop-info">
+                <strong>1000x Multiplier</strong>
+                <p>Get 1000x multiplier</p>
+                <span class="shop-cost">1500 points</span>
+              </div>
+              <button class="primary-button" onclick="adminBuyX(1000, 1500)" type="button">Buy</button>
+            </div>
+            
+            <div class="shop-item">
+              <div class="shop-info">
+                <strong>10000x Multiplier</strong>
+                <p>Get 10000x multiplier</p>
+                <span class="shop-cost">3000 points</span>
+              </div>
+              <button class="primary-button" onclick="adminBuyX(10000, 3000)" type="button">Buy</button>
+            </div>
+
+            <div class="shop-item">
+              <div class="shop-info">
+                <strong>Free 20x for Users</strong>
+                <p>Give all users 20x multiplier</p>
+                <span class="shop-cost">Admin Action</span>
+              </div>
+              <button class="primary-button" onclick="adminGiveFreeX()" type="button">Give</button>
+            </div>
+
+            <div class="shop-item">
+              <div class="shop-info">
+                <strong>10,000,000 Points</strong>
+                <p>Get 10,000,000 points</p>
+                <span class="shop-cost">$1000</span>
+              </div>
+              <button class="primary-button" onclick="adminBuyPoints(10000000, 1000)" type="button">Buy</button>
+            </div>
+          </div>
+          <p class="admin-message" id="adminMessage" role="status"></p>
+
+          <div class="panel-heading" style="margin-top: 24px;">
+            <div>
+              <span class="eyebrow">Withdraw</span>
+              <h3>Cash Out</h3>
+            </div>
+          </div>
+
+          <div class="withdrawal-form">
+          <div class="wallet-options">
+            <label>
+              <input type="radio" name="withdrawType" value="Binance" checked>
+              <span>Binance</span>
+            </label>
+            <label>
+              <input type="radio" name="withdrawType" value="Gift Card">
+              <span>Gift Card</span>
+            </label>
+          </div>
+
+            <label class="wallet-field">
+              Wallet Address / Phone Number
+              <input id="adminWalletAddress" type="text" placeholder="Enter your wallet address or phone number">
+            </label>
+
+            <label class="wallet-field">
+              Amount to Withdraw
+              <div style="display: flex; gap: 8px;">
+                <input id="withdrawAmount" type="number" placeholder="Enter amount" min="0" step="1" style="flex: 1;">
+                <span id="currencyLabel" style="display: flex; align-items: center; padding: 0 12px; background: var(--panel-strong); border: 1px solid var(--line); border-radius: 8px; min-height: 44px; font-weight: 600; color: var(--gold);">$</span>
+              </div>
+            </label>
+
+            <button class="primary-button" onclick="adminWithdraw()" type="button">Withdraw</button>
+            <p class="withdrawal-message" id="withdrawMessage" role="status"></p>
+          </div>
+
+          <div class="panel-heading" style="margin-top: 24px;">
+            <div>
+              <span class="eyebrow">Admin Tools</span>
+              <h3>Share Points</h3>
+            </div>
+          </div>
+
+          <button class="primary-button" onclick="adminSharePoints()" type="button">Share Points to User</button>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
